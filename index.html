@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오디오 플레이어</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .player-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .play-btn { background-color: #4CAF50; color: white; }
+        .stop-btn { background-color: #f44336; color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="player-container">
+        <h2>오디오 플레이어</h2>
+
+        <div>
+            <button class="play-btn" onclick="togglePlay(0)">재생 / 멈춤</button>
+        </div>
+        <div>
+            <button class="play-btn" onclick="togglePlay(1)">재생 / 멈춤</button>
+        </div>
+        <div>
+            <button class="play-btn" onclick="togglePlay(2)">재생 / 멈춤</button>
+        </div>
+
+        <audio id="audio0" src="long_sound (1).mp3"></audio>
+        <audio id="audio1" src="long_sound (2).mp3"></audio>
+        <audio id="audio2" src="long_sound (3).mp3"></audio>
+    </div>
+
+    <script>
+        function togglePlay(index) {
+            let audio = document.getElementById("audio" + index);
+            if (audio.paused) {
+                stopAll();  // 다른 오디오 정지
+                audio.play();
+            } else {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        }
+
+        function stopAll() {
+            for (let i = 0; i < 3; i++) {
+                let audio = document.getElementById("audio" + i);
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        }
+    </script>
+
+</body>
+</html>
